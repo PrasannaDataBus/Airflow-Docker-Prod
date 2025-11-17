@@ -234,3 +234,40 @@ docker compose down
 #     secrets/
 # ⚠️ Avoid `docker compose down -v` unless you truly want a blank Airflow instance.
 # ==================================================================================================
+
+# ==================================================================================================
+# FERNET KEY Related
+# --------------------------------------------------------------------------------------------------
+
+# To Generate AIRFLOW_FERNET_KEY follow the below steps:
+
+# The below will install python if python was not found as Docker image
+
+docker run --rm python:3.10 python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
+
+# The above will install cyrtopgraphy if not installed previously and generates AIRFLOW_FERNET_KEY
+
+docker run --rm python:3.10 sh -c "pip install cryptography >/dev/null 2>&1 && python -c 'from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())'"
+
+# Note: If your loval venv uses 3.9 but you have installed python 3.10 image in docker - I would suggest to keep both local and docker image using the same version
+# Follow the below steps to remove the previously installed version 3.10 and install 3.9.
+
+docker rmi python:3.10
+
+# After removing 3.10 you can verify with:
+
+docker images
+
+# Now you will need to install Python 3.9 image - the below code will install python 3.9 if not found and it will generate AIRFLOW_FERNET_KEY
+
+docker run --rm python:3.9 sh -c "pip install cryptography >/dev/null 2>&1 && python - << 'EOF'
+from cryptography.fernet import Fernet
+print(Fernet.generate_key().decode())
+EOF"
+
+# If you are confident that python and cyrptography has already been installed then use the below code
+# The below can also be used to re-generate AIRFLOW_FERNET_KEY
+
+py -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
+
+# ==================================================================================================
