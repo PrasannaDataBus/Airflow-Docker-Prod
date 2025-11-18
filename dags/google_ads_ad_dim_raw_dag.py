@@ -31,7 +31,7 @@ with DAG(
     schedule_interval="0 6 * * 1",  # Every Monday at 06:00
     start_date=datetime(2025, 11, 1),
     catchup=False,
-    tags=["google_ads", "bigquery", "incremental", "dev", "AD PERFORMANCE DIMENSIONS"],
+    tags=["google_ads", "bigquery", "incremental", "prod", "AD PERFORMANCE DIMENSIONS"],
 ) as dag:
 
     run_incremental_extraction = PythonOperator(

@@ -31,7 +31,7 @@ with DAG(
     schedule_interval=None,  # Manual trigger only in Dev
     start_date=datetime(2025, 11, 1),
     catchup=False,
-    tags=["google_ads", "bigquery", "incremental", "dev", "AUDIENCE DIMENSIONS"],
+    tags=["google_ads", "bigquery", "incremental", "prod", "AUDIENCE DIMENSIONS"],
 ) as dag:
 
     run_incremental_extraction = PythonOperator(
