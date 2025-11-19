@@ -11,11 +11,11 @@ Production-grade Apache Airflow setup running on Docker. This repository orchest
 
 📂 Project Structure:
 Plaintext
-
+```
 Airflow-Docker-Prod/
 ├── dags/                  # ETL Workflows (Ads pipelines)
 │   ├── google_ads_*.py    # Specific extraction DAGs
-├── db/                    # Mounted volume for SQLite (Legacy/Backup)(Gitignored)
+├── db/                    # Mounted volume for PostgreSQL (Legacy/Backup)(Gitignored)
 ├── logs/                  # Airflow task logs (Persisted locally)(Gitignored)
 ├── plugins/               # Custom Airflow plugins/hooks
 ├── secrets/               # Directory for business logic secrets (JSON keys, params.env)(Gitignored)
@@ -23,8 +23,8 @@ Airflow-Docker-Prod/
 ├── docker-compose.yaml    # Container orchestration config (Gitignored)
 ├── Dockerfile             # Custom Airflow image definition
 ├── requirements.txt       # Python dependencies (pandas, google-ads, etc.)
-└── best_practices.sh      # Guide for development standards
-
+└── best_practices.sh      # Guide for production standards
+```
 🛠️ Prerequisites:
 
 - Docker Desktop installed and running.
