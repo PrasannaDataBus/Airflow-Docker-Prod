@@ -26,7 +26,8 @@ with DAG(
     dag_id="meta_ads_creative_dim_raw_dag",
     default_args=default_args,
     description="Incrementally extract and load Meta Ads Creative dimensions data into BigQuery",
-    schedule_interval="0 6 1-7 * 1", # minute hour day-of-month month day-of-week (once a month)
+    # schedule_interval="0 6 1-7 * 1", # minute hour day-of-month month day-of-week (once a month)
+    schedule_interval="0 8 * * 1",  # Every Monday at 08:00
     start_date=datetime(2025, 11, 1),
     catchup=False,
     tags=["meta_ads", "bigquery", "incremental", "prod"],
